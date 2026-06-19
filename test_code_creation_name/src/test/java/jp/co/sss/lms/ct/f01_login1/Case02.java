@@ -1,6 +1,7 @@
 package jp.co.sss.lms.ct.f01_login1;
 
 import static jp.co.sss.lms.ct.util.WebDriverUtils.*;
+import static org.junit.jupiter.api.Assertions.*;
 
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
@@ -10,6 +11,7 @@ import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestMethodOrder;
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
 
 import jp.co.sss.lms.ct.util.WebDriverUtils;
 
@@ -51,11 +53,15 @@ public class Case02 {
 		String ID = "StudentBB00";
 		String PW = "StudentBB00";
 		int waitTime = 3;
-
+		//ログインテスト異常系
 		WebDriverUtils.webDriver.findElement(By.id("loginId")).sendKeys(ID);
 		WebDriverUtils.webDriver.findElement(By.id("password")).sendKeys(PW);
 		WebDriverUtils.webDriver.findElement(By.xpath("//input[@value='ログイン']")).click();
 		WebDriverUtils.pageLoadTimeout(waitTime);//マジックナンバー防止
+		//エラーメッセージの内容を確認
+		WebElement errorMessage = WebDriverUtils.webDriver.findElement(By.xpath("//span[@class='help-inline error']"));
+		assertTrue(errorMessage.isDisplayed(), "エラーメッセージが正しく表示されている");
+		//スクリーンショットを取得
 		WebDriverUtils.getEvidence(new Object() {
 		});
 	}

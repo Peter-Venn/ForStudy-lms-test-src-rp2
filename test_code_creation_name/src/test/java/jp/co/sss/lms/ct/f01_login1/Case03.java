@@ -9,6 +9,9 @@ import org.junit.jupiter.api.MethodOrderer.OrderAnnotation;
 import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestMethodOrder;
+import org.openqa.selenium.By;
+
+import jp.co.sss.lms.ct.util.WebDriverUtils;
 
 /**
  * 結合テスト ログイン機能①
@@ -35,14 +38,27 @@ public class Case03 {
 	@Order(1)
 	@DisplayName("テスト01 トップページURLでアクセス")
 	void test01() {
-		// TODO ここに追加
+		//サーバーにアクセス
+		String url = "http://localhost:8080/lms";//定数化
+		WebDriverUtils.goTo(url);
 	}
 
 	@Test
 	@Order(2)
 	@DisplayName("テスト02 初回ログイン済みの受講生ユーザーでログイン")
 	void test02() {
-		// TODO ここに追加
+		// ログインしているアカウント情報を渡す
+		String ID = "StudentAA01";
+		String PW = "StudentAA1";
+		int waitTime = 3;
+		//ログインテスト正常系
+		WebDriverUtils.webDriver.findElement(By.id("loginId")).sendKeys(ID);
+		WebDriverUtils.webDriver.findElement(By.id("password")).sendKeys(PW);
+		WebDriverUtils.webDriver.findElement(By.xpath("//input[@value='ログイン']")).click();
+		WebDriverUtils.pageLoadTimeout(waitTime);//マジックナンバー防止
+		//スクリーンショットを取得
+		WebDriverUtils.getEvidence(new Object() {
+		});
 	}
 
 }

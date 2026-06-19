@@ -1,6 +1,7 @@
 package jp.co.sss.lms.ct.f01_login1;
 
 import static jp.co.sss.lms.ct.util.WebDriverUtils.*;
+import static org.junit.jupiter.api.Assertions.*;
 
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
@@ -9,6 +10,7 @@ import org.junit.jupiter.api.MethodOrderer.OrderAnnotation;
 import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestMethodOrder;
+import org.openqa.selenium.By;
 
 import jp.co.sss.lms.ct.util.WebDriverUtils;
 
@@ -37,9 +39,17 @@ public class Case01 {
 	@Order(1)
 	@DisplayName("テスト01 トップページURLでアクセス")
 	void test01() {
-		//エビデンスはevidenceフォルダーに収納
+		//ウェブページのインスタンスを生成
 		String url = "http://localhost:8080/lms";//定数化
 		WebDriverUtils.goTo(url);
+
+		//画面内要素を確認
+		assertNotNull(WebDriverUtils.webDriver.findElement(By.id("loginId")), "ログイン画面にID入力欄が存在している");
+		assertNotNull(WebDriverUtils.webDriver.findElement(By.id("password")), "ログイン画面にパスワード入力欄が存在している");
+		assertNotNull(WebDriverUtils.webDriver.findElement(By.xpath("//input[@value='ログイン']")),
+				"ログイン画面にログインボタンが存在している");
+
+		//スクリーンショットを取得
 		WebDriverUtils.getEvidence(new Object() {
 		});
 	}
