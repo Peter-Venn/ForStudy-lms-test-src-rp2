@@ -44,8 +44,10 @@ public class Case01 {
 		WebDriverUtils.goTo(url);
 
 		//画面内要素を確認
-		assertNotNull(WebDriverUtils.webDriver.findElement(By.id("loginId")), "ログイン画面にID入力欄が存在している");
-		assertNotNull(WebDriverUtils.webDriver.findElement(By.id("password")), "ログイン画面にパスワード入力欄が存在している");
+		assertEquals(WebDriverUtils.webDriver.getTitle(), "ログイン | LMS",
+				"ログイン画面に遷移する");
+		assertEquals(WebDriverUtils.webDriver.findElement(By.cssSelector("h2")).getText(), "ログイン",
+				"ログイン画面が表示される");
 		assertNotNull(WebDriverUtils.webDriver.findElement(By.xpath("//input[@value='ログイン']")),
 				"ログイン画面にログインボタンが存在している");
 
