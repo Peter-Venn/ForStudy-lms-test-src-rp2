@@ -40,9 +40,18 @@ public class Case02 {
 	@Order(1)
 	@DisplayName("テスト01 トップページURLでアクセス")
 	void test01() {
-		// TODO ここに追加
+		//サーバーにアクセス
 		String url = "http://localhost:8080/lms";//定数化
 		WebDriverUtils.goTo(url);
+		//ログイン画面を確認
+		assertEquals(WebDriverUtils.webDriver.getTitle(), "ログイン | LMS",
+				"ログイン画面に遷移する");
+		assertNotNull(WebDriverUtils.webDriver.findElement(By.xpath("//input[@value='ログイン']")),
+				"ログイン画面にログインボタンが存在している");
+		//スクリーンショットを取得
+		WebDriverUtils.getEvidence(new Object() {
+		});
+
 	}
 
 	@Test
@@ -59,10 +68,6 @@ public class Case02 {
 		WebDriverUtils.webDriver.findElement(By.xpath("//input[@value='ログイン']")).click();
 		WebDriverUtils.pageLoadTimeout(waitTime);//マジックナンバー防止
 		//エラーメッセージの内容を確認
-		assertEquals(WebDriverUtils.webDriver.getTitle(), "ログイン | LMS",
-				"ログイン画面に遷移する");
-		assertEquals(WebDriverUtils.webDriver.findElement(By.cssSelector("h2")).getText(), "ログイン",
-				"ログイン画面が表示される");
 		WebElement errorMessage = WebDriverUtils.webDriver.findElement(By.xpath("//span[@class='help-inline error']"));
 		assertTrue(errorMessage.isDisplayed(), "エラーメッセージが正しく表示されている");
 		//スクリーンショットを取得

@@ -38,9 +38,10 @@ public class Case03 {
 	@Order(1)
 	@DisplayName("テスト01 トップページURLでアクセス")
 	void test01() {
-		//サーバーにアクセス
+		//サーバーにアクセスし、ログイン画面を確認
 		String url = "http://localhost:8080/lms";//定数化
 		WebDriverUtils.goTo(url);
+
 	}
 
 	@Test

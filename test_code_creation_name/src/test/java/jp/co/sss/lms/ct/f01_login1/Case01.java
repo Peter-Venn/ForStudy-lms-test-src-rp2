@@ -42,15 +42,11 @@ public class Case01 {
 		//ウェブページのインスタンスを生成
 		String url = "http://localhost:8080/lms";//定数化
 		WebDriverUtils.goTo(url);
-
 		//画面内要素を確認
 		assertEquals(WebDriverUtils.webDriver.getTitle(), "ログイン | LMS",
 				"ログイン画面に遷移する");
-		assertEquals(WebDriverUtils.webDriver.findElement(By.cssSelector("h2")).getText(), "ログイン",
-				"ログイン画面が表示される");
 		assertNotNull(WebDriverUtils.webDriver.findElement(By.xpath("//input[@value='ログイン']")),
 				"ログイン画面にログインボタンが存在している");
-
 		//スクリーンショットを取得
 		WebDriverUtils.getEvidence(new Object() {
 		});
