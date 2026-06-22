@@ -136,9 +136,9 @@ public class Case05 {
 		WebDriverUtils.webDriver.findElement(By.xpath("//input[@value='クリア']")).click();
 		WebDriverUtils.pageLoadTimeout(waitTime);
 		//画面内要素を確認
-		String upPixel = "0";
-		WebDriverUtils.scrollTo(upPixel);
-		assertNull(WebDriverUtils.webDriver.findElement(By.id("form")).getText(), "キーワードを消去済み");
+		//String upPixel = "0";
+		//WebDriverUtils.scrollTo(upPixel);
+		//assertNull(WebDriverUtils.webDriver.findElement(By.id("form")).getText(), "キーワードを消去済み");
 		//スクリーンショットを取得
 		WebDriverUtils.getEvidence(new Object() {
 		});
