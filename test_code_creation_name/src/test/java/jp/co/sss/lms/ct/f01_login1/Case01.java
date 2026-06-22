@@ -43,7 +43,7 @@ public class Case01 {
 		String url = "http://localhost:8080/lms";//定数化
 		WebDriverUtils.goTo(url);
 		//画面内要素を確認
-		assertEquals(WebDriverUtils.webDriver.getTitle(), "ログイン | LMS",
+		assertEquals("ログイン | LMS", WebDriverUtils.webDriver.getTitle(),
 				"ログイン画面に遷移する");
 		assertNotNull(WebDriverUtils.webDriver.findElement(By.xpath("//input[@value='ログイン']")),
 				"ログイン画面にログインボタンが存在している");
