@@ -80,9 +80,8 @@ public class Case04 {
 	@DisplayName("テスト03 上部メニューの「ヘルプ」リンクからヘルプ画面に遷移")
 	void test03() {
 		//ヘルプ画面に遷移
-		WebDriverUtils.webDriver.findElement(By.xpath("//a[contains(text(), '機能')]")).click();
 		int waitTime = 120;
-		WebDriverUtils.pageLoadTimeout(waitTime);
+		WebDriverUtils.webDriver.findElement(By.xpath("//a[contains(text(), '機能')]")).click();
 		WebDriverUtils.webDriver.findElement(By.xpath("//a[contains(text(), 'ヘルプ')]")).click();
 		WebDriverUtils.pageLoadTimeout(waitTime);
 		//画面内要素を確認
@@ -99,7 +98,6 @@ public class Case04 {
 		//よくある質問画面に遷移
 		WebDriverUtils.webDriver.findElement(By.xpath("//a[@href='/lms/faq']")).click();
 		int waitTime = 120;
-		WebDriverUtils.pageLoadTimeout(waitTime);
 		Set<String> allWindows = webDriver.getWindowHandles();
 		String lastWindow = allWindows.toArray(new String[0])[allWindows.size() - 1];//タブを配列化
 		WebDriverUtils.webDriver.switchTo().window(lastWindow);//タブを切り替える
