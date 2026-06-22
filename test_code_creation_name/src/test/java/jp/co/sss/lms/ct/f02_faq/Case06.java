@@ -113,9 +113,9 @@ public class Case06 {
 	void test05() {
 		//カテゴリ検索を実行
 		int waitTime = 120;
-		String url = "/lms/faq?frequentlyAskedQuestionCategoryId=";
-		String no = "1";
-		WebDriverUtils.webDriver.findElement(By.xpath("//a[@href='" + url + no + "']")).click();//変数ブロック化
+		String url = "/lms/faq?frequentlyAskedQuestionCategoryId=";//記載されたウェブページを変数ブロック化
+		String no = "1";//【研修関係】を選択
+		WebDriverUtils.webDriver.findElement(By.xpath("//a[@href='" + url + no + "']")).click();
 		WebDriverUtils.pageLoadTimeout(waitTime);
 		//画面内要素を確認
 		String bottomPixel = "585.33";
@@ -131,7 +131,7 @@ public class Case06 {
 	@DisplayName("テスト06 検索結果の質問をクリックしその回答を表示")
 	void test06() {
 		//検索結果を検査
-		WebDriverUtils.webDriver.findElement(By.xpath("//span[text()='Q.']")).click();
+		WebDriverUtils.webDriver.findElement(By.xpath("//span[text()='Q.']")).click();//質問をクリックし、回答内容を展開
 		assertNotNull(WebDriverUtils.webDriver.findElement(By.xpath("//span[text()='A.']")), "検索された質問の回答が正しく表示");
 		//スクリーンショットを取得
 		WebDriverUtils.getEvidence(new Object() {
