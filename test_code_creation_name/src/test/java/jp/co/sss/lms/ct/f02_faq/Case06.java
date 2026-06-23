@@ -120,7 +120,7 @@ public class Case06 {
 		//画面内要素を確認
 		String bottomPixel = "585.33";
 		WebDriverUtils.scrollTo(bottomPixel);
-		assertNotNull(WebDriverUtils.webDriver.findElement(By.xpath("//span[text()='Q.']")), "検索された質問が正しく表示");//質問の存在を確認
+		assertNotNull(WebDriverUtils.webDriver.findElement(By.xpath("//span[text()='Q.']")).getText(), "検索された質問が正しく表示");//質問の存在を確認
 		//スクリーンショットを取得
 		WebDriverUtils.getEvidence(new Object() {
 		});
@@ -132,7 +132,8 @@ public class Case06 {
 	void test06() {
 		//検索結果を検査
 		WebDriverUtils.webDriver.findElement(By.xpath("//span[text()='Q.']")).click();//質問をクリックし、回答内容を展開
-		assertNotNull(WebDriverUtils.webDriver.findElement(By.xpath("//span[text()='A.']")), "検索された質問の回答が正しく表示");
+		assertNotNull(WebDriverUtils.webDriver.findElement(By.xpath("//span[text()='A.']")).getText(),
+				"検索された質問の回答が正しく表示");
 		//スクリーンショットを取得
 		WebDriverUtils.getEvidence(new Object() {
 		});
