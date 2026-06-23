@@ -120,7 +120,9 @@ public class Case06 {
 		//画面内要素を確認
 		String bottomPixel = "585.33";
 		WebDriverUtils.scrollTo(bottomPixel);
-		assertNotNull(WebDriverUtils.webDriver.findElement(By.xpath("//span[text()='Q.']")).getText(), "検索された質問が正しく表示");//質問の存在を確認
+		assertNotNull(WebDriverUtils.webDriver.findElement(By.xpath("//span[text()='キャンセル料・途中退校について']")).getText());//質問の存在を確認
+		assertNotNull(
+				WebDriverUtils.webDriver.findElement(By.xpath("//span[text()='研修の申し込みはどのようにすれば良いですか？']")).getText());//質問の存在を確認
 		//スクリーンショットを取得
 		WebDriverUtils.getEvidence(new Object() {
 		});
@@ -131,9 +133,15 @@ public class Case06 {
 	@DisplayName("テスト06 検索結果の質問をクリックしその回答を表示")
 	void test06() {
 		//検索結果を検査
-		WebDriverUtils.webDriver.findElement(By.xpath("//span[text()='Q.']")).click();//質問をクリックし、回答内容を展開
-		assertNotNull(WebDriverUtils.webDriver.findElement(By.xpath("//span[text()='A.']")).getText(),
-				"検索された質問の回答が正しく表示");
+		String scrollPixel = "700";
+		int waitTime = 5;
+		WebDriverUtils.scrollBy(scrollPixel);
+		WebDriverUtils.webDriver.findElement(By.xpath("//span[text()='キャンセル料・途中退校について']")).click();//質問をクリックし、回答内容を展開	
+		assertNotNull(WebDriverUtils.webDriver
+				.findElement(By.id("answer-h[${status.index}]")));
+		WebDriverUtils.webDriver.findElement(By.xpath("//span[text()='研修の申し込みはどのようにすれば良いですか？']")).click();//質問をクリックし、回答内容を展開
+		assertNotNull(WebDriverUtils.webDriver
+				.findElement(By.id("answer-h[${status.index}]")));
 		//スクリーンショットを取得
 		WebDriverUtils.getEvidence(new Object() {
 		});
