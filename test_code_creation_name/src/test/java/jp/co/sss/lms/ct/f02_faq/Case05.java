@@ -120,7 +120,7 @@ public class Case05 {
 		//画面内要素を確認
 		String bottomPixel = "585.33";
 		WebDriverUtils.scrollTo(bottomPixel);
-		assertNotNull(WebDriverUtils.webDriver.findElement(By.xpath("//span")), "検索された質問が正しく表示");
+		assertNotNull(WebDriverUtils.webDriver.findElement(By.xpath("//span[text()='Q.']")), "検索された質問が正しく表示");//質問の存在を確認
 		//スクリーンショットを取得
 		WebDriverUtils.getEvidence(new Object() {
 		});
@@ -138,7 +138,7 @@ public class Case05 {
 		WebDriverUtils.webDriver.findElement(By.xpath("//input[@value='クリア']")).click();
 		WebDriverUtils.pageLoadTimeout(waitTime);
 		//画面内要素を確認
-		assertEquals("", WebDriverUtils.webDriver.findElement(By.id("form")).getText(), "キーワードを消去済み");
+		assertEquals("", WebDriverUtils.webDriver.findElement(By.id("form")).getText(), "キーワードを消去済み");//入力欄にキーワードが消えたかを確認
 		//スクリーンショットを取得
 		WebDriverUtils.getEvidence(new Object() {
 		});
