@@ -133,15 +133,18 @@ public class Case06 {
 	@DisplayName("テスト06 検索結果の質問をクリックしその回答を表示")
 	void test06() {
 		//検索結果を検査
-		String scrollPixel = "700";
-		int waitTime = 5;
-		WebDriverUtils.scrollBy(scrollPixel);
+		String scrollPixel = "300";
 		WebDriverUtils.webDriver.findElement(By.xpath("//span[text()='キャンセル料・途中退校について']")).click();//質問をクリックし、回答内容を展開	
-		assertNotNull(WebDriverUtils.webDriver
-				.findElement(By.id("answer-h[${status.index}]")));
+		WebDriverUtils.scrollBy(scrollPixel);
+		assertEquals("A. 受講者の退職や解雇等、やむを得ない事情による途中終了に関してなど、事情をお伺いした上で、協議という形を取らせて頂きます。 弊社営業担当までご相談下さい。",
+				WebDriverUtils.webDriver
+						.findElement(By.id("answer-h[${status.index}]")).getText());
 		WebDriverUtils.webDriver.findElement(By.xpath("//span[text()='研修の申し込みはどのようにすれば良いですか？']")).click();//質問をクリックし、回答内容を展開
-		assertNotNull(WebDriverUtils.webDriver
-				.findElement(By.id("answer-h[${status.index}]")));
+		WebDriverUtils.scrollBy(scrollPixel);
+		assertEquals(
+				"A. 営業担当がいる場合は、営業担当までご連絡ください。申し込み方法についてご案内させていただきます。なお、弊社営業営業がいない場合は、東京ITスクール運営事務局までご連絡いただけると幸いです。",
+				WebDriverUtils.webDriver
+						.findElement(By.id("answer-h[${status.index}]")).getText());
 		//スクリーンショットを取得
 		WebDriverUtils.getEvidence(new Object() {
 		});
