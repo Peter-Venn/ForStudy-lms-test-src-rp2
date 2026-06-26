@@ -3,6 +3,8 @@ package jp.co.sss.lms.ct.f03_report;
 import static jp.co.sss.lms.ct.util.WebDriverUtils.*;
 import static org.junit.jupiter.api.Assertions.*;
 
+import java.util.List;
+
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.DisplayName;
@@ -11,6 +13,7 @@ import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestMethodOrder;
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
 
 import jp.co.sss.lms.ct.util.WebDriverUtils;
 
@@ -75,56 +78,142 @@ public class Case09 {
 	@Order(3)
 	@DisplayName("テスト03 上部メニューの「ようこそ○○さん」リンクからユーザー詳細画面に遷移")
 	void test03() {
-		// TODO ここに追加
+		//ユーザー詳細画面に遷移
+		WebDriverUtils.webDriver.findElement(By.xpath("//a[@href='/lms/user/detail']")).click();
+		//スクリーンショットを取得
+		WebDriverUtils.getEvidence(new Object() {
+		});
+
 	}
 
 	@Test
 	@Order(4)
 	@DisplayName("テスト04 該当レポートの「修正する」ボタンを押下しレポート登録画面に遷移")
 	void test04() {
-		// TODO ここに追加
+		//レポート編集画面に遷移
+		String pixel = "700";
+		WebDriverUtils.scrollBy(pixel);
+		List<WebElement> elements = WebDriverUtils.webDriver.findElements(By.xpath("//input[@value='修正する']"));
+		elements.get(1).click();
+		//画面内要素を確認
+		assertEquals("レポート登録 | LMS", WebDriverUtils.webDriver.getTitle(), "レポート修正画面に遷移する");//
+		//スクリーンショットを取得
+		WebDriverUtils.getEvidence(new Object() {
+		});
 	}
 
 	@Test
 	@Order(5)
 	@DisplayName("テスト05 報告内容を修正して「提出する」ボタンを押下しエラー表示：学習項目が未入力")
 	void test05() {
-		// TODO ここに追加
+		//学習項目を削除
+		String pixel = "700";
+		WebDriverUtils.webDriver.findElement(By.xpath("//input[@type='text']")).clear();
+		WebDriverUtils.scrollBy(pixel);
+		WebDriverUtils.webDriver.findElement(By.xpath("//button[@type='submit']")).click();
+		//スクリーンショットを取得
+		WebDriverUtils.getEvidence(new Object() {
+		});
 	}
 
 	@Test
 	@Order(6)
 	@DisplayName("テスト06 不適切な内容で修正して「提出する」ボタンを押下しエラー表示：理解度が未入力")
 	void test06() {
-		// TODO ここに追加
+		/*レポート編集画面に遷移
+		String pixel = "700";
+		WebDriverUtils.scrollBy(pixel);
+		List<WebElement> elements = WebDriverUtils.webDriver.findElements(By.xpath("//input[@value='修正する']"));
+		elements.get(1).click();
+		//理解度をnullにする
+		String pixel = "700";
+		WebDriverUtils.webDriver.findElement(By.xpath("//option[@value=null]")).click();
+		WebDriverUtils.scrollBy(pixel);
+		WebDriverUtils.webDriver.findElement(By.xpath("//button[@type='submit']")).click();
+		//スクリーンショットを取得
+		WebDriverUtils.getEvidence(new Object() {
+		});*/
 	}
 
 	@Test
 	@Order(7)
 	@DisplayName("テスト07 不適切な内容で修正して「提出する」ボタンを押下しエラー表示：目標の達成度が数値以外")
 	void test07() {
-		// TODO ここに追加
+		//レポート編集画面に遷移
+		String pixel = "700";
+		WebDriverUtils.scrollBy(pixel);
+		List<WebElement> elements = WebDriverUtils.webDriver.findElements(By.xpath("//input[@value='修正する']"));
+		elements.get(1).click();
+		//目標の達成度を文字にする
+		String text = "test";
+		WebDriverUtils.webDriver.findElement(By.xpath("//textarea[@name='contentArray[0]']")).sendKeys(text);
+		WebDriverUtils.scrollBy(pixel);
+		WebDriverUtils.webDriver.findElement(By.xpath("//button[@type='submit']")).click();
+		//スクリーンショットを取得
+		WebDriverUtils.getEvidence(new Object() {
+		});
 	}
 
 	@Test
 	@Order(8)
 	@DisplayName("テスト08 不適切な内容で修正して「提出する」ボタンを押下しエラー表示：目標の達成度が範囲外")
 	void test08() {
-		// TODO ここに追加
+		//レポート編集画面に遷移
+		String pixel = "700";
+		WebDriverUtils.scrollBy(pixel);
+		List<WebElement> elements = WebDriverUtils.webDriver.findElements(By.xpath("//input[@value='修正する']"));
+		elements.get(1).click();
+		//目標の達成度を0にする
+		String text = "0";
+		WebDriverUtils.webDriver.findElement(By.xpath("//textarea[@name='contentArray[0]']")).sendKeys(text);
+		WebDriverUtils.scrollBy(pixel);
+		WebDriverUtils.webDriver.findElement(By.xpath("//button[@type='submit']")).click();
+		//スクリーンショットを取得
+		WebDriverUtils.getEvidence(new Object() {
+		});
 	}
 
 	@Test
 	@Order(9)
 	@DisplayName("テスト09 不適切な内容で修正して「提出する」ボタンを押下しエラー表示：目標の達成度・所感が未入力")
 	void test09() {
-		// TODO ここに追加
+		//レポート編集画面に遷移
+		String pixel = "700";
+		WebDriverUtils.scrollBy(pixel);
+		List<WebElement> elements = WebDriverUtils.webDriver.findElements(By.xpath("//input[@value='修正する']"));
+		elements.get(1).click();
+		//目標の達成度と所感を削除
+		WebDriverUtils.webDriver.findElement(By.xpath("//textarea[@name='contentArray[0]']")).clear();
+		WebDriverUtils.webDriver.findElement(By.xpath("//textarea[@name='contentArray[1]']")).clear();
+		WebDriverUtils.scrollBy(pixel);
+		WebDriverUtils.webDriver.findElement(By.xpath("//button[@type='submit']")).click();
+		//スクリーンショットを取得
+		WebDriverUtils.getEvidence(new Object() {
+		});
 	}
 
 	@Test
 	@Order(10)
 	@DisplayName("テスト10 不適切な内容で修正して「提出する」ボタンを押下しエラー表示：所感・一週間の振り返りが2000文字超")
 	void test10() {
-		// TODO ここに追加
+		//レポート編集画面に遷移
+		String pixel = "700";
+		WebDriverUtils.scrollBy(pixel);
+		List<WebElement> elements = WebDriverUtils.webDriver.findElements(By.xpath("//input[@value='修正する']"));
+		elements.get(1).click();
+		//所感の文字数を2000字以上にする
+		String test = "test ";
+		WebDriverUtils.webDriver.findElement(By.xpath("//textarea[@name='contentArray[1]']")).clear();
+		WebDriverUtils.webDriver.findElement(By.xpath("//textarea[@name='contentArray[2]']")).clear();
+		for (int i = 0; i <= 2000; i++) {
+			WebDriverUtils.webDriver.findElement(By.xpath("//textarea[@name='contentArray[1]']")).sendKeys(test);
+			WebDriverUtils.webDriver.findElement(By.xpath("//textarea[@name='contentArray[2]']")).sendKeys(test);
+		}
+		WebDriverUtils.scrollBy(pixel);
+		WebDriverUtils.webDriver.findElement(By.xpath("//button[@type='submit']")).click();
+		//スクリーンショットを取得
+		WebDriverUtils.getEvidence(new Object() {
+		});
 	}
 
 }
